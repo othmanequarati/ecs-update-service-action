@@ -1,0 +1,75 @@
+# action.yml
+name: 'ECS UPDATE SERVICE'
+description: 'Update ECS service using cli'
+inputs:
+  AWS_ACCESS_KEY_ID:
+    description: 'Aws access key'
+    required: true
+  AWS_SECRET_ACCESS_KEY:
+    description: 'Aws secret key'
+    required: true
+  AWS_REGION:
+    description: 'Aws region'
+    required: true
+  AWS_PROFILE:
+    description: 'Aws profile'
+    required: true
+  CLUSTER_NAME:
+    description: 'Cluster name'
+    required: true
+  PROJECT_NAME:
+    description: 'Project name'
+    required: true
+  ECS_TARGET_GROUP_NAME:
+    description: 'ECS service name'
+    required: true
+  CONTAINER_NAME:
+    description: 'Container Port'
+    required: true
+  CONTAINER_PORT:
+    description: 'Container Port'
+    required: true
+  DEPLOYMENT_MAX:
+    description: 'Deployment max percent'
+    required: true
+  DEPLOYMENT_MIN:
+    description: 'Deployment min percent'
+    required: true
+  ECS_PARAMS_PATH:
+    description: 'Path to ecs params file'
+    required: true
+  LAUNCH_TYPE:
+    description: 'Launch type : FARGATE,EC2,EXTERNAL'
+    required: true
+    default: 'FARGATE'
+  AWS_DEFAULT_OUTPUT:
+    description: 'Aws output'
+    required: false
+    default: 'json'
+  PATH_TO_ECS_FOLDER:
+    description: 'Path to ecs configuration folder'
+    required: true
+  CLUSTER_CONFIG_NAME:
+    description: 'Path to ecs configuration folder'
+    required: false
+    default: 'default_cluster'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.AWS_ACCESS_KEY_ID }}\
+    - ${{ inputs.AWS_SECRET_ACCESS_KEY }}\
+    - ${{ inputs.AWS_REGION }}\
+    - ${{ inputs.AWS_PROFILE }}\
+    - ${{ inputs.CLUSTER_NAME }}\
+    - ${{ inputs.PROJECT_NAME }}\
+    - ${{ inputs.ECS_TARGET_GROUP_NAME }}\
+    - ${{ inputs.CONTAINER_NAME }}\
+    - ${{ inputs.CONTAINER_PORT }}\
+    - ${{ inputs.DEPLOYMENT_MAX }}\
+    - ${{ inputs.DEPLOYMENT_MIN }}\
+    - ${{ inputs.ECS_PARAMS_PATH }}\
+    - ${{ inputs.LAUNCH_TYPE }}\
+    - ${{ inputs.AWS_DEFAULT_OUTPUT }}\
+    - ${{ inputs.PATH_TO_ECS_FOLDER }}\
+    - ${{ inputs.CLUSTER_CONFIG_NAME }}\
